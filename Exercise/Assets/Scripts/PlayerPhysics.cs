@@ -99,7 +99,7 @@ public class PlayerPhysics : MonoBehaviour {
 		
 		
 	
-		
+		//this is the final position
 		Vector2 finalTransform = new Vector2(deltaX,deltaY);
 		
 		transform.Translate(finalTransform);
