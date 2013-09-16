@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if(collide.gameObject.CompareTag("Enemy"))
 		{
-			
+			//player life will decrement by 1 in each collision
 			playerLives--;
 			print("Lives : " + playerLives + "	Score : " + score);
 			
