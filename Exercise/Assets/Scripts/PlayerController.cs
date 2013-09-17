@@ -26,16 +26,17 @@ public class PlayerController : MonoBehaviour {
 		if (playerPhysics.movementStopped) {
 			targetSpeed = 0;
 			currentSpeed = 0;
+			
 		}
 		
 		// If player is touching the ground
 		if (playerPhysics.grounded) {
 			amountToMove.y = 0;
-			
+		
 			// Jump
-			if (Input.GetButtonDown("Jump")) {
-				amountToMove.y = jumpHeight;	
-			}
+			if(Input.GetAxis("Horizontal")!=0.0f)
+				amountToMove.y = jumpHeight;
+			
 		}
 		
 		// Input
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour {
 		amountToMove.x = currentSpeed;
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move(amountToMove * Time.deltaTime);
+			
 	}
 	
 	// Increase currentspeed towards target by speed
@@ -59,4 +61,6 @@ public class PlayerController : MonoBehaviour {
 			return (direction == Mathf.Sign(target-curSpeed))? curSpeed: target; // if n has now passed target then return target, otherwise return currentSpeed
 		}
 	}
+	
+
 }
