@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour {
 			else if (x == xpos)
 			{
 				moveDown = true;
-				y= Mathf.Lerp(y,y -= 1.0f,t);
+				y= Mathf.Lerp(y,y -= 3.0f,t);
 				moveToRight = false;
 				this.startTime = Time.time;
 			}
@@ -60,6 +60,14 @@ public class Enemy : MonoBehaviour {
 
         this.transform.position = new Vector3(x, y, this.transform.position.z);
 		
+	}
+	
+	void FixedUpdate()
+	{
+		if(this.transform.position.y == -10f)
+		{
+			y=10;
+		}
 	}
 		
 	
