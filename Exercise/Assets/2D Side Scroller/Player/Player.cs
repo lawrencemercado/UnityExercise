@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	public float acceleration =5;
 	public Vector3 jumpVelocity;
 	private bool touchingPlatform;
+	private bool doublejump = false;
 	public static float score = 0;
 	void Update () {
 		time += Time.deltaTime;
@@ -14,9 +15,15 @@ public class Player : MonoBehaviour {
 		if(transform.position.y>0 && time >=30f)
 		{	Debug.Log("time:" + time);
 			if(touchingPlatform && Input.GetButtonDown("Jump")){
-			rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
-				
-		}
+			rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);	
+			doublejump = true;
+			}
+			
+			else if(!touchingPlatform && Input.GetButtonDown("Jump") && doublejump)
+			{
+				rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
+				doublejump = false;
+			}
 		distanceTraveled = transform.localPosition.x;
 		
 		//Debug.Log("score:" + score);
