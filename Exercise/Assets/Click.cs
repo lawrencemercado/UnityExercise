@@ -22,7 +22,7 @@ public class Click : MonoBehaviour {
 			Application.Quit();
 		}
 		else
-		{
+		{	Player.score =0;
 			Application.LoadLevel(1);
 		}
 	}

@@ -23,16 +23,7 @@ public class Player : MonoBehaviour {
 			
 			if(transform.position.y>0 && time >=30f)
 			{	Debug.Log("time:" + time);
-				if(touchingPlatform && Input.GetButtonDown("Jump")){
-				rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);	
-				doublejump = true;
-				}
-				
-				else if(!touchingPlatform && Input.GetButtonDown("Jump") && doublejump)
-				{
-					rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
-					doublejump = false;
-				}
+				Jump();
 			distanceTraveled = transform.localPosition.x;
 			
 			//Debug.Log("score:" + score);
@@ -74,5 +65,21 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionExit () {
 		touchingPlatform = false;
+	}
+	
+	void Jump()
+	{	foreach(Touch  touch in Input.touches)
+		{
+		if(touchingPlatform && touch.phase == TouchPhase.Began){
+				rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);	
+				doublejump = true;
+				}
+				
+				else if(!touchingPlatform && touch.phase == TouchPhase.Began&& doublejump)
+				{
+					rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
+					doublejump = false;
+				}
+		}
 	}
 }
